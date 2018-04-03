@@ -10,13 +10,13 @@
     <script type="text/javascript" src="https://use.fontawesome.com/81fba2bc7e.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
-    <title>{% block title %}{% endblock %}PetShop SON</title>
+    <title>{% block title %}{% endblock %}GEFUNC</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/starter-template.css" rel="stylesheet">
+    <link href="/css/starter-template.css" rel="stylesheet">
 </head>
 
 <body>
@@ -30,10 +30,10 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item {% if app.request.attributes.get("_route") matches '/(.*)funci(.*)/' %}active{% endif %}">
-                <a class="nav-link" href="#">Funcionários <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ path('funcionario_index') }}">Funcionários <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item {% if app.request.attributes.get("_route") matches '/(.*)secre(.*)/' %}active{% endif %}">
-                <a class="nav-link" href="#">Secretarias</a>
+                <a class="nav-link" href="{{ path('secretaria_index') }}">Secretarias</a>
             </li>
             <li class="nav-item {% if app.request.attributes.get("_route") matches '/(.*)Usu(.*)/' %}active{% endif %}">
                 <a class="nav-link" href="#">Usuários</a>

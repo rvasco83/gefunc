@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="gefunc@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="gefunc">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="cad_produto"/>
+    <schema id="4" parent="1" name="information_schema"/>
+    <schema id="5" parent="1" name="mysql"/>
+    <schema id="6" parent="1" name="performance_schema"/>
+    <schema id="7" parent="1" name="petshop_son"/>
+    <schema id="8" parent="1" name="symfony4_auth"/>
+    <schema id="9" parent="1" name="symfony_form_validator"/>
+    <schema id="10" parent="1" name="sys"/>
+    <schema id="11" parent="1" name="teste"/>
+  </database-model>
+</dataSource>
