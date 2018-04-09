@@ -1,4 +1,12 @@
-{{ form_start(form) }}
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello{% endblock %}
+
+{% block body %}
+    <main class="container mt-5">
+    {% form_theme form with 'bootstrap_4_horizontal_layout.html.twig' %}
+    {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+    {{ form_end(form) }}
+    </main>
+{% endblock %}

@@ -17,6 +17,7 @@ class Secretaria
     private $id;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private $nome;
@@ -36,5 +37,10 @@ class Secretaria
         $this->nome = $nome;
 
         return $this;
+    }
+
+    public function __toString ()
+    {
+        return $this->getNome();
     }
 }

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Funcionario index{% endblock %}
+
+{% block body %}
+    <h1>Funcionario index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mat.</th>
+                <th>Nome</th>
+                <th>Cargo</th>
+                <th>Status</th>
+                <th>Data_admissao</th>
+                <th>Data_exoneracao</th>
+                <th>Salario_base</th>
+                <th>Gratificacao</th>
+                <th>Desconto</th>
+                <th>Salario_liquido</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for funcionario in funcionarios %}
+            <tr>
+                <td>{{ funcionario.id }}</td>
+                <td>{{ funcionario.nome }}</td>
+                <td> {% if funcionario.cargo == "C"%}
+                        <p>Comissionado</p>
+                     {% elseif funcionario.cargo == "E"%}
+                        <p>Efetivo</p>
+                     {% endif %}
+                </td>
+                <td> {% if funcionario.status == "A"%}
+                        <p>Ativo</p>
+                    {% elseif funcionario.status == "E"%}
+                        <p>Exonerado</p>
+                    {% endif %}</td>
+                <td>{{ funcionario.dataAdmissao|date('d/m/Y')}}</td>
+                <td>{{ funcionario.dataExoneracao == '' ? '' : funcionario.dataExoneracao|date('d/m/Y') }}</td>
+                <td>{{ funcionario.salarioBase|number_format(2, ',', '.') }}</td>
+                <td>{{ funcionario.gratificacao|number_format(2, ',', '.') }}</td>
+                <td>{{ funcionario.desconto|number_format(2, ',', '.') }}</td>
+                <td>{{ funcionario.salarioLiquido|number_format(2, ',', '.') }}</td>
+                <td>
+                    <a href="{{ path('funcionario_show', {'id': funcionario.id}) }}">show</a>
+                    <a href="{{ path('funcionario_edit', {'id': funcionario.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('funcionario_new') }}">Create new</a>
+{% endblock %}

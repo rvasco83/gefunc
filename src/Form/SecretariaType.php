@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Secretaria;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,7 +14,18 @@ class SecretariaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nome')
+            ->add('nome', TextType::class, [
+                'label' => 'Nome',
+                'attr' => [
+                    'placeholder' => "Informe o nome da secretaria"
+                ],
+            ])
+            ->add('enviar', SubmitType::class, [
+                'label' => "Salvar",
+                'attr' => [
+                    'class' => 'btn btn-success'
+                ]
+            ])
         ;
     }
 
