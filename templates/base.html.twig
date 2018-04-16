@@ -35,6 +35,9 @@
             <li class="nav-item {% if app.request.attributes.get("_route") matches '/(.*)secre(.*)/' %}active{% endif %}">
                 <a class="nav-link" href="{{ path('secretaria_index') }}">Secretarias</a>
             </li>
+            <li class="nav-item {% if app.request.attributes.get("_route") matches '/(.*)rela(.*)/' %}active{% endif %}">
+                <a class="nav-link" href="{{ path('relatorio_index') }}">Relatórios</a>
+            </li>
             <li class="nav-item {% if app.request.attributes.get("_route") matches '/(.*)Usu(.*)/' %}active{% endif %}">
                 <a class="nav-link" href="#">Usuários</a>
             </li>

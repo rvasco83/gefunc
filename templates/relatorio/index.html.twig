@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Relatórios {% endblock %}
+
+{% block body %}
+<h1>Relatórios index</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Total do salário líquido por secretaria <a href='{{ path('relatorio_secretaria') }}' class="btn btn-primary btn-sm pull-right">Gerar Relatório</a></th>
+    </tr>
+    <tr>
+        <th>Funcionários por período de admissão <a href='{{ path('relatorio_funcionario') }}' class="btn btn-primary btn-sm pull-right">Gerar Relatório</a></th>
+    </tr>
+    </thead>
+    <tbody>
+
+{% endblock %}

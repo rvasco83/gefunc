@@ -1,0 +1,73 @@
+{%  extends 'base.html.twig' %}
+
+{% block title %}Relatório-Secretarias{% endblock %}
+
+{% block body %}
+    <h1>Relatório Funcionario</h1>
+    <br>
+    {{ form_start(form) }}
+
+    <div class="row">
+        <div class="form-group col-4">
+            {{ form_label(form.data_inicio, 'Data Início', {'attr':{'class':'control-label'}}) }}
+            {{ form_widget(form.data_inicio, {'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class="form-group col-4">
+            {{ form_label(form.data_fim) }}
+            {{ form_widget(form.data_fim, {'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class="form-group col-4">
+            {{ form_label(form.status) }}
+            {{ form_widget(form.status, {'attr':{'class':'form-control'}}) }}
+        </div>
+    </div>
+        <button type="submit" class="btn btn-primary btn-sm pull-rigth">Pesquisar</button>
+
+    {{ form_end(form) }}
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Mat.</th>
+            <th>Nome</th>
+            <th>Cargo</th>
+            <th>Status</th>
+            <th>Data_admissao</th>
+            <th>Data_exoneracao</th>
+            <th>Salario_liquido</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for funcionario in funcionarios %}
+            <tr>
+                <td>{{ funcionario.id }}</td>
+                <td>{{ funcionario.nome }}</td>
+                <td> {% if funcionario.cargo == "C"%}
+                        <p>Comissionado</p>
+                    {% elseif funcionario.cargo == "E"%}
+                        <p>Efetivo</p>
+                    {% endif %}
+                </td>
+                <td> {% if funcionario.status == "A"%}
+                        <p>Ativo</p>
+                    {% elseif funcionario.status == "E"%}
+                        <p>Exonerado</p>
+                    {% endif %}</td>
+                <td>{{ funcionario.dataAdmissao|date('d/m/Y')}}</td>
+                <td>{{ funcionario.dataExoneracao == '' ? '' : funcionario.dataExoneracao|date('d/m/Y') }}</td>
+                <td>{{ funcionario.salarioLiquido|number_format(2, ',', '.') }}</td>
+                <td>
+                    <a href="{{ path('funcionario_show', {'id': funcionario.id}) }}">show</a>
+                    <a href="{{ path('funcionario_edit', {'id': funcionario.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
