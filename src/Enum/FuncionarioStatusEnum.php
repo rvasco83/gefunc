@@ -11,5 +11,15 @@ namespace App\Enum;
 
 class FuncionarioStatusEnum
 {
+    const STATUS_ATIVO = 'A';
+    const STATUS_EXONERADO = 'E';
+
+    public static function getStatus()
+    {
+        return [
+            self::STATUS_ATIVO => 'Ativo',
+            self::STATUS_EXONERADO =>'Exonerado'
+        ];
+    }
 
 }

@@ -77,8 +77,8 @@ class FuncionarioType extends AbstractType
                 ]
             ])
             ->add('data_admissao', DateType::class, [
-                'widget' => 'choice',
-                'format' => 'dd/MM/yyyy'
+                'widget' => 'single_text'
+
             ])
 
             ->add('salario_base', MoneyType::class, [
@@ -107,16 +107,50 @@ class FuncionarioType extends AbstractType
                 'choice_label' => 'nome',
                 'multiple' => false,
             ])
-            ->add('enviar', SubmitType::class, [
-                'label' => "Salvar",
-                'attr' => [
-                    'class' => 'btn btn-success'
-                ]
-            ])
         ;
+
+
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+            $funcionario = $event->getData();
+            $form = $event->getForm();
+
+            if (isset($funcionario['status'])) {
+                $disabled = false;
+                if($funcionario['status'] == 'A') {
+                    $disabled = true;
+                }
+
+                $form
+                    ->add('data_exoneracao', DateType::class, [
+                        'disabled' => $disabled,
+                        'widget' => 'single_text'
+                    ]);
+
+                $event->setData($funcionario);
+            }
+        });
+
+
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+            $funcionario = $event->getData();
+            $form = $event->getForm();
+
+            $disabled = false;
+            if($funcionario->getStatus() == 'A') {
+                $funcionario->setDataExoneracao(null);
+                $disabled = true;
+            }
+
+            $form
+                ->add('data_exoneracao', DateType::class, [
+                    'disabled' => $disabled,
+                    'widget' => 'single_text'
+                ]);
+        });
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             $funcionario = $event->getData();
+
             $form = $event->getForm();
             if ($funcionario->getId() != null) {
                 $form->add('status', ChoiceType::class, [
@@ -131,19 +165,41 @@ class FuncionarioType extends AbstractType
                     'label' => 'Selecione a imagem da identidade',
                     'required' => false
                 ]);
-                $estadoDataExoneracao = true;
+
+
+                $estadoDataExoneracao = false;
+
                 if($funcionario->getStatus() == 'E') {
-                    $estadoDataExoneracao = false;
+                    $estadoDataExoneracao = true;
                 }
-                $form ->add('data_exoneracao', DateType::class, [
-                    'widget' => 'choice',
-                    'format' => 'dd/MM/yyyy',
-                    'disabled' => $estadoDataExoneracao
+
+                $form->add('salario_base', MoneyType::class, [
+                    'label' => 'Salário Base  ',
+                    'currency' => 'BRL',
+                    'attr' => [
+                        'placeholder' => 'Informe o salário base do funcionário',
+                        'readonly' => $estadoDataExoneracao
+                    ],
+                ])
+                ->add('desconto', MoneyType::class, [
+                    'label' => 'Desconto  ',
+                    'currency' => 'BRL',
+                    'attr' => [
+                            'placeholder' => 'Informe o desconto do funcionário',
+                            'readonly' => $estadoDataExoneracao
+                    ],
+                ])
+                ->add('data_exoneracao', DateType::class, [
+                    'disabled' => !$estadoDataExoneracao,
+                    'widget' => 'single_text'
                 ]);
-                $estadoGratificacao = false;
-                if($funcionario->getCargo() == 'C') {
-                    $estadoGratificacao = true;
+
+                $estadoGratificacao = true;
+
+                if($funcionario->getCargo() == 'E' && $funcionario->getStatus() == 'A') {
+                    $estadoGratificacao = false;
                 }
+
                 $form ->add('gratificacao', MoneyType::class, [
                     'label' => 'Gratificação  ',
                     'currency' => 'BRL',
