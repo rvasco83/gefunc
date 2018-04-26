@@ -67,14 +67,20 @@ class FuncionarioRepository extends ServiceEntityRepository
     public function getFuncionarioAtivoPorData($dataInicio, $dataFim, $status)
     {
         $q = $this->createQueryBuilder("f");
-        $campo = 'f.data_exoneracao';
+        $campo = false;
+
             if($status == 'A'){
                 $campo = 'f.data_admissao';
+            }elseif($status == 'E' and 'f.data_exoneracao' != null){
+                $campo = 'f.data_exoneracao';
             }
+
             $q->where(
                 $q->expr()->between($campo, ':data1', ':data2')
+
             );
 
+            $q->andWhere("f.status = '$status'");
             $q->setParameter('data1', $dataInicio->format('Y-m-d'));
             $q->setParameter('data2', $dataFim->format('Y-m-d'));
 
