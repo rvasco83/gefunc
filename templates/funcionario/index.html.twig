@@ -3,9 +3,14 @@
 {% block title %}Funcionario index{% endblock %}
 
 {% block body %}
-    <h1>Funcionario index</h1>
-
-    <table class="table">
+    <h1>Listagem de funcionários</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ path('funcionario_new') }}" class="btn btn-primary pull-right">Cadastrar Funcionário</a>
+        </div>
+    </div>
+    <table class="table table-hover table-striped mt-3">
         <thead>
             <tr>
                 <th>Mat.</th>
@@ -14,9 +19,6 @@
                 <th>Status</th>
                 <th>Data_admissao</th>
                 <th>Data_exoneracao</th>
-                <th>Salario_base</th>
-                <th>Gratificacao</th>
-                <th>Desconto</th>
                 <th>Salario_liquido</th>
                 <th>Ações</th>
             </tr>
@@ -39,13 +41,13 @@
                     {% endif %}</td>
                 <td>{{ funcionario.dataAdmissao|date('d/m/Y')}}</td>
                 <td>{{ funcionario.dataExoneracao == '' ? '' : funcionario.dataExoneracao|date('d/m/Y') }}</td>
-                <td>{{ funcionario.salarioBase|number_format(2, ',', '.') }}</td>
-                <td>{{ funcionario.gratificacao|number_format(2, ',', '.') }}</td>
-                <td>{{ funcionario.desconto|number_format(2, ',', '.') }}</td>
                 <td>{{ funcionario.salarioLiquido|number_format(2, ',', '.') }}</td>
                 <td>
-                    <a href="{{ path('funcionario_show', {'id': funcionario.id}) }}">show</a>
-                    <a href="{{ path('funcionario_edit', {'id': funcionario.id}) }}">edit</a>
+                    <img width="50" {{ funcionario.imagemDocumento }}></td>
+                <td>
+                    <a class="btn btn-sm btn-success" href="{{ path('funcionario_show', {"id":funcionario.id}) }}"> <i class="fa fa-eye"></i> </a>
+                    <a class="btn btn-sm btn-warning" href="{{ path('funcionario_edit', {"id": funcionario.id}) }}"> <i class="fa fa-pencil"></i> </a>
+                    <a class="btn btn-sm btn-danger bt_excluir_produto" href="{{ path('funcionario_delete', {"id": funcionario.id}) }}"> <i class="fa fa-trash"></i> </a>
                 </td>
             </tr>
         {% else %}
@@ -55,6 +57,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('funcionario_new') }}">Create new</a>
 {% endblock %}

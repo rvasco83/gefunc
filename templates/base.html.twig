@@ -28,7 +28,7 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item {% if app.request.attributes.get("_route") matches '/(.*)funci(.*)/' %}active{% endif %}">
+            <li class="nav-item {% if app.request.attributes.get("_route") matches '/(.*)funcionario(.*)/' %}active{% endif %}">
                 <a class="nav-link" href="{{ path('funcionario_index') }}">Funcionários <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item {% if app.request.attributes.get("_route") matches '/(.*)secre(.*)/' %}active{% endif %}">

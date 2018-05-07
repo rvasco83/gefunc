@@ -3,9 +3,14 @@
 {% block title %}Secretaria - {% endblock %}
 
 {% block body %}
-    <h1>Secretaria</h1>
-
-    <table class="table">
+    <h1>Listagem de Secretarias</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ path('secretaria_new') }}" class="btn btn-primary pull-right">Cadastrar Secretaria</a>
+        </div>
+    </div>
+    <table class="table table-hover table-striped mt-3">
         <thead>
             <tr>
                 <th>Id</th>
@@ -14,13 +19,14 @@
             </tr>
         </thead>
         <tbody>
-        {% for secretarium in secretarias %}
+        {% for secretaria in secretarias %}
             <tr>
-                <td>{{ secretarium.id }}</td>
-                <td>{{ secretarium.nome }}</td>
+                <td>{{ secretaria.id }}</td>
+                <td>{{ secretaria.nome }}</td>
                 <td>
-                    <a href="{{ path('secretaria_show', {'id': secretarium.id}) }}">show</a>
-                    <a href="{{ path('secretaria_edit', {'id': secretarium.id}) }}">edit</a>
+                    <a class="btn btn-sm btn-success" href="{{ path('secretaria_show', {"id":secretaria.id}) }}"> <i class="fa fa-eye"></i> </a>
+                    <a class="btn btn-sm btn-warning" href="{{ path('secretaria_edit', {"id": secretaria.id}) }}"> <i class="fa fa-pencil"></i> </a>
+                    <a class="btn btn-sm btn-danger bt_excluir_produto" href="{{ path('secretaria_delete', {"id": secretaria.id}) }}"> <i class="fa fa-trash"></i> </a>
                 </td>
             </tr>
         {% else %}
@@ -30,6 +36,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('secretaria_new') }}">Create new</a>
 {% endblock %}

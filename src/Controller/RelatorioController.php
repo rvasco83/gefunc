@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Enum\FuncionarioStatusEnum;
 use App\Repository\FuncionarioRepository;
+use PHPExcel;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -73,6 +74,9 @@ class RelatorioController extends Controller
            ->add('pesquisar', SubmitType::class, [
                'label' => 'Pesquisar'
            ])
+           ->add('excel', SubmitType::class, [
+               'label' => 'Gerar Excel'
+           ])
            ->getForm();
 
        $form->handleRequest($request);
@@ -89,6 +93,12 @@ class RelatorioController extends Controller
 
            if ($pdfClicked) {
                return $this->funcionarioPdf($funcionarios);
+           }
+
+           $excelClicked = $form->get('excel')->isClicked();
+
+           if ($excelClicked) {
+               return $this->funcionarioExcel($funcionarios);
            }
        }
 
@@ -120,6 +130,36 @@ class RelatorioController extends Controller
         return $domPdf->stream();
     }
 
+    /**
+     * @Route("/relatorio/secretaria_excel", name="secretaria_excel")
+     */
+    public function secretariaExcel(Request $request, FuncionarioRepository $funcionarioRepository)
+    {
+
+        $excel = new PHPExcel();
+
+        $total = $funcionarioRepository->salarioTotal();
+
+        $excel->setActiveSheetIndex(0)
+            ->setCellValue('A1','Total de Salários')
+            ->setCellValue( 'B1', 'Secretaria');
+
+        $contador = 1;
+
+        foreach ($total as $linha) {
+            $contador++;
+            $excel->setActiveSheetIndex(0)->setCellValue('A'.$contador, $linha['total']);
+            $excel->setActiveSheetIndex(0)->setCellValue('B'.$contador, $linha['nome']);
+        }
+
+        header('Content-Type: application/vnd.openxmlformarts-officedocument.spreadsheetml.sheet ');
+        header('Content-Disposition: attachment; filename="test.xlsx"');
+        header('Cache-Control: max-age=0');
+
+        $file = \PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+        $file->save('php://output');
+    }
+
     private function funcionarioPdf($funcionarios)
     {
         $view = $this->renderView('relatorio/funcionario_pdf.html.twig', [
@@ -132,5 +172,43 @@ class RelatorioController extends Controller
         $domPdf->render();
 
         return $domPdf->stream();
+    }
+
+    /**
+     * @Route("/relatorio/funcionario_excel", name="funcionario_excel")
+     */
+    public function funcionarioExcel($funcionarios)
+    {
+        $excel = new PHPExcel();
+
+        $total = $funcionarios;
+
+        $excel->setActiveSheetIndex(0)
+            ->setCellValue('A1','Mat.')
+            ->setCellValue( 'B1', 'Nome')
+            ->setCellValue( 'C1', 'Cargo')
+            ->setCellValue( 'D1', 'Status')
+            ->setCellValue( 'E1', 'Data Admissão')
+            ->setCellValue( 'F1', 'Data Exoneração')
+            ->setCellValue( 'G1', 'Salário Liquído');
+
+        $contador = 1;
+        foreach ($total as $linha) {
+            $contador++;
+            $excel->setActiveSheetIndex(0)->setCellValue('A'.$contador, $linha->getId());
+            $excel->setActiveSheetIndex(0)->setCellValue('B'.$contador, $linha->getNome());
+            $excel->setActiveSheetIndex(0)->setCellValue('C'.$contador, $linha->getCargo());
+            $excel->setActiveSheetIndex(0)->setCellValue('D'.$contador, $linha->getStatus());
+            $excel->setActiveSheetIndex(0)->setCellValue('E'.$contador, $linha->getDataAdmissao());
+            $excel->setActiveSheetIndex(0)->setCellValue('F'.$contador, $linha->getDataExoneracao());
+            $excel->setActiveSheetIndex(0)->setCellValue('G'.$contador, $linha->getSalarioLiquido());
+        }
+
+        header('Content-Type: application/vnd.openxmlformarts-officedocument.spreadsheetml.sheet ');
+        header('Content-Disposition: attachment; filename="test.xlsx"');
+        header('Cache-Control: max-age=0');
+
+        $file = \PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+        $file->save('php://output');
     }
 }
