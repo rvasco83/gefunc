@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usuario index{% endblock %}
+
+{% block body %}
+    <h1>Usuario index</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ path('usuario_new') }}" class="btn btn-primary pull-right">Cadastrar Usuário</a>
+        </div>
+    </div>
+
+    <table class="table table-hover table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Matricula</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.id }}</td>
+                <td>{{ usuario.nome }}</td>
+                <td>{{ usuario.matricula }}</td>
+                <td>{{ usuario.username }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>
+                    <a class="btn btn-sm btn-success" href="{{ path('usuario_show', {"id":usuario.id}) }}"> <i class="fa fa-eye"></i> </a>
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <a class="btn btn-sm btn-warning" href="{{ path('usuario_edit', {"id": usuario.id}) }}"> <i class="fa fa-pencil"></i> </a>
+                    <a class="btn btn-sm btn-danger bt_excluir_produto" href="{{ path('usuario_delete', {"id": usuario.id}) }}"> <i class="fa fa-trash"></i> </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

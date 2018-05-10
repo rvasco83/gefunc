@@ -33,3 +33,4 @@ $('#funcionario_status').on('change', function () {
     controlaExibicaoCamposFuncionario(cargo, status);
 
 });
+

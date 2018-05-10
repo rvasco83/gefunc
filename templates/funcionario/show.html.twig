@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Funcionario{% endblock %}
+{% block title %}Visualizar Funcionário - {% endblock %}
 
 {% block body %}
-    <h1>Funcionario</h1>
+    <h1>Funcionário</h1>
 
     <table class="table">
         <tbody>
@@ -86,10 +86,16 @@
             </tr>
         </tbody>
     </table>
+    <br>
+    <div class="row">
+        <div class="form-group col-4">
 
-    <a href="{{ path('funcionario_index') }}">back to list</a>
+            <a href="{{ path('funcionario_index') }}" class="btn btn-primary btn-sm">Voltar</a>
 
-    <a href="{{ path('funcionario_edit', {'id': funcionario.id}) }}">edit</a>
+            <a href="{{ path('funcionario_edit', {'id': funcionario.id}) }}" class="btn btn-primary btn-sm">Editar</a>
 
-    {{ include('funcionario/_delete_form.html.twig') }}
+            <a href="{{ include('funcionario/_delete_form.html.twig') }}
+
+        </div>
+    </div>
 {% endblock %}

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Secretaria{% endblock %}
+{% block title %}Visualizar}Secretaria - {% endblock %}
 
 {% block body %}
-    <h1>Secretaria</h1>
+    <h1>Visualizar Secretaria</h1>
 
     <table class="table">
         <tbody>
@@ -18,9 +18,15 @@
         </tbody>
     </table>
 
-    <a href="{{ path('secretaria_index') }}">back to list</a>
+    <div class="row">
+        <div class="form-group col-4">
 
-    <a href="{{ path('secretaria_edit', {'id': secretarium.id}) }}">edit</a>
+            <a href="{{ path('secretaria_index') }}" class="btn btn-primary btn-sm">Voltar</a>
 
-    {{ include('secretaria/_delete_form.html.twig') }}
+            <a href="{{ path('secretaria_edit', {'id': secretarium.id}) }}" class="btn btn-primary btn-sm">Editar</a>
+
+            <a href="{{ include('secretaria/_delete_form.html.twig') }}
+
+        </div>
+    </div>
 {% endblock %}

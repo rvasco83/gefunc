@@ -1,7 +1,11 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: ~ }
+        main:
+            entity:
+                class: App\Entity\Usuario
+                property: username
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -14,11 +18,33 @@ security:
             # http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
-            # form_login: true
+            form_login:
+                login_path: login
+                check_path: login
+                default_target_path: /
+                always_use_default_target_path: true
             # https://symfony.com/doc/current/security/form_login_setup.html
+
+            logout:
+                path: /logout
+                target: /login
+
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario, roles: ROLE_GERENTE }
+        - { path: ^/relatorio, roles: ROLE_GERENTE }
+        - { path: ^/secretaria, roles: ROLE_GERENTE }
+
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_GERENTE
+        ROLE_GERENTE: ROLE_OPERADOR
+
+
+    encoders:
+        App\Entity\Usuario:
+            algorithm: bcrypt
+            cost: 12

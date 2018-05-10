@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Secretaria{% endblock %}
+{% block title %}Nova Secretaria - {% endblock %}
 
 {% block body %}
-    <h1>Create new Secretaria</h1>
+    <h1>Nova Secretaria</h1>
 
     {{ include('secretaria/_form.html.twig') }}
 
-    <a href="{{ path('secretaria_index') }}">back to list</a>
 {% endblock %}

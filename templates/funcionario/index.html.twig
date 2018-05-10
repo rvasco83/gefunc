@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Funcionario index{% endblock %}
+{% block title %}Funcionários - {% endblock %}
 
 {% block body %}
     <h1>Listagem de funcionários</h1>
@@ -43,11 +43,11 @@
                 <td>{{ funcionario.dataExoneracao == '' ? '' : funcionario.dataExoneracao|date('d/m/Y') }}</td>
                 <td>{{ funcionario.salarioLiquido|number_format(2, ',', '.') }}</td>
                 <td>
-                    <img width="50" {{ funcionario.imagemDocumento }}></td>
-                <td>
                     <a class="btn btn-sm btn-success" href="{{ path('funcionario_show', {"id":funcionario.id}) }}"> <i class="fa fa-eye"></i> </a>
                     <a class="btn btn-sm btn-warning" href="{{ path('funcionario_edit', {"id": funcionario.id}) }}"> <i class="fa fa-pencil"></i> </a>
+                    {% if is_granted("ROLE_ADMIN") %}
                     <a class="btn btn-sm btn-danger bt_excluir_produto" href="{{ path('funcionario_delete', {"id": funcionario.id}) }}"> <i class="fa fa-trash"></i> </a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

@@ -1,14 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Funcionario{% endblock %}
+{% block title %}Editar Funcionário - {% endblock %}
 
 {% block body %}
-    <h1>Edit Funcionario</h1>
+    <h1>Editar Funcionário</h1>
 
+    {{ include('funcionario/_form.html.twig') }}
 
-    {{ include('funcionario/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('funcionario_index') }}">back to list</a>
-
-    {{ include('funcionario/_delete_form.html.twig') }}
 {% endblock %}

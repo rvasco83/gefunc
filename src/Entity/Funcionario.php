@@ -150,96 +150,96 @@ class Funcionario
         return $this->id;
     }
 
-    public function getSecretaria(): ?Secretaria
+    public function getSecretaria()
     {
         return $this->Secretaria;
     }
 
-    public function setSecretaria(?Secretaria $Secretaria): self
+    public function setSecretaria($Secretaria)
     {
         $this->Secretaria = $Secretaria;
 
         return $this;
     }
 
-    public function getNome(): ?string
+    public function getNome()
     {
         return $this->nome;
     }
 
-    public function setNome(string $nome): self
+    public function setNome($nome)
     {
         $this->nome = $nome;
 
         return $this;
     }
 
-    public function getLogadouro(): ?string
+    public function getLogadouro()
     {
         return $this->logadouro;
     }
 
-    public function setLogadouro(string $logadouro): self
+    public function setLogadouro($logadouro)
     {
         $this->logadouro = $logadouro;
 
         return $this;
     }
 
-    public function getNumero(): ?string
+    public function getNumero()
     {
         return $this->numero;
     }
 
-    public function setNumero(string $numero): self
+    public function setNumero($numero)
     {
         $this->numero = $numero;
 
         return $this;
     }
 
-    public function getBairro(): ?string
+    public function getBairro()
     {
         return $this->bairro;
     }
 
-    public function setBairro(string $bairro): self
+    public function setBairro($bairro)
     {
         $this->bairro = $bairro;
 
         return $this;
     }
 
-    public function getCidade(): ?string
+    public function getCidade()
     {
         return $this->cidade;
     }
 
-    public function setCidade(string $cidade): self
+    public function setCidade($cidade)
     {
         $this->cidade = $cidade;
 
         return $this;
     }
 
-    public function getEstado(): ?string
+    public function getEstado()
     {
         return $this->estado;
     }
 
-    public function setEstado(string $estado): self
+    public function setEstado($estado)
     {
         $this->estado = $estado;
 
         return $this;
     }
 
-    public function getIdentidade(): ?string
+    public function getIdentidade()
     {
         return $this->identidade;
     }
 
-    public function setIdentidade(string $identidade): self
+    public function setIdentidade($identidade)
     {
         $this->identidade = $identidade;
 
@@ -258,60 +258,60 @@ class Funcionario
         return $this;
     }
 
-    public function getCargo(): ?string
+    public function getCargo()
     {
         return $this->cargo;
     }
 
-    public function setCargo(?string $cargo): self
+    public function setCargo($cargo)
     {
         $this->cargo = $cargo;
 
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStatus()
     {
         return $this->status;
     }
 
-    public function setStatus(string $status): self
+    public function setStatus($status)
     {
         $this->status = $status;
 
         return $this;
     }
 
-    public function getDataAdmissao(): ?\DateTime
+    public function getDataAdmissao()
     {
         return $this->data_admissao;
     }
 
-    public function setDataAdmissao(\DateTime $data_admissao): self
+    public function setDataAdmissao($data_admissao)
     {
         $this->data_admissao = $data_admissao;
 
         return $this;
     }
 
-    public function getDataExoneracao(): ?\DateTime
+    public function getDataExoneracao()
     {
         return $this->data_exoneracao;
     }
 
-    public function setDataExoneracao(?\DateTime $data_exoneracao): self
+    public function setDataExoneracao($data_exoneracao)
     {
         $this->data_exoneracao = $data_exoneracao;
 
         return $this;
     }
 
-    public function getSalarioBase(): ?float
+    public function getSalarioBase()
     {
         return $this->salario_base;
     }
 
-    public function setSalarioBase(float $salario_base): self
+    public function setSalarioBase($salario_base)
     {
         $this->salario_base = $salario_base;
 
@@ -323,31 +323,31 @@ class Funcionario
         return $this->gratificacao;
     }
 
-    public function setGratificacao($gratificacao): self
+    public function setGratificacao($gratificacao)
     {
         $this->gratificacao = $gratificacao;
 
         return $this;
     }
 
-    public function getDesconto(): ?float
+    public function getDesconto()
     {
         return $this->desconto;
     }
 
-    public function setDesconto(float $desconto): self
+    public function setDesconto($desconto)
     {
         $this->desconto = $desconto;
 
         return $this;
     }
 
-    public function getSalarioLiquido(): ?float
+    public function getSalarioLiquido()
     {
         return $this->salario_liquido;
     }
 
-    public function setSalarioLiquido(float $salario_liquido): self
+    public function setSalarioLiquido($salario_liquido)
     {
         $this->salario_liquido = $salario_liquido;
 

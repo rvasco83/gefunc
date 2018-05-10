@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Secretaria - {% endblock %}
+{% block title %}Secretarias - {% endblock %}
 
 {% block body %}
     <h1>Listagem de Secretarias</h1>
@@ -26,7 +26,9 @@
                 <td>
                     <a class="btn btn-sm btn-success" href="{{ path('secretaria_show', {"id":secretaria.id}) }}"> <i class="fa fa-eye"></i> </a>
                     <a class="btn btn-sm btn-warning" href="{{ path('secretaria_edit', {"id": secretaria.id}) }}"> <i class="fa fa-pencil"></i> </a>
+                    {% if is_granted("ROLE_ADMIN") %}
                     <a class="btn btn-sm btn-danger bt_excluir_produto" href="{{ path('secretaria_delete', {"id": secretaria.id}) }}"> <i class="fa fa-trash"></i> </a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

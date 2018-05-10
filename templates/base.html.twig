@@ -31,28 +31,27 @@
             <li class="nav-item {% if app.request.attributes.get("_route") matches '/(.*)funcionario(.*)/' %}active{% endif %}">
                 <a class="nav-link" href="{{ path('funcionario_index') }}">Funcionários <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item {% if app.request.attributes.get("_route") matches '/(.*)secre(.*)/' %}active{% endif %}">
-                <a class="nav-link" href="{{ path('secretaria_index') }}">Secretarias</a>
-            </li>
-            <li class="nav-item {% if app.request.attributes.get("_route") matches '/(.*)rela(.*)/' %}active{% endif %}">
-                <a class="nav-link" href="{{ path('relatorio_index') }}">Relatórios</a>
-            </li>
-            <li class="nav-item {% if app.request.attributes.get("_route") matches '/(.*)Usu(.*)/' %}active{% endif %}">
-                <a class="nav-link" href="#">Usuários</a>
-            </li>
             {% if is_granted("ROLE_GERENTE") %}
+                <li class="nav-item {% if app.request.attributes.get("_route") matches '/(.*)secre(.*)/' %}active{% endif %}">
+                    <a class="nav-link" href="{{ path('secretaria_index') }}">Secretarias</a>
+                </li>
+                <li class="nav-item {% if app.request.attributes.get("_route") matches '/(.*)rela(.*)/' %}active{% endif %}">
+                    <a class="nav-link" href="{{ path('relatorio_index') }}">Relatórios</a>
+                </li>
                 <li class="nav-item {% if app.request.attributes.get("_route") matches '/(.*)usuario(.*)/' %}active{% endif %}">
-                    <a class="nav-link" href="#">Usuários</a>
+                    <a class="nav-link" href="{{ path('usuario_index') }}">Usuários</a>
                 </li>
             {% endif %}
+        </ul>
+        <ul class="navbar-nav mr-right" style="margin-right: 6%">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   {# {{ app.user.nome }}#}
+                    {{ app.user.nome }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Trocar senha</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Logout</a>
+                    <a class="dropdown-item" href="{{ path('logout') }}">Logout</a>
                 </div>
             </li>
         </ul>

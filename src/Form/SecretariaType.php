@@ -20,12 +20,6 @@ class SecretariaType extends AbstractType
                     'placeholder' => "Informe o nome da secretaria"
                 ],
             ])
-            ->add('enviar', SubmitType::class, [
-                'label' => "Salvar",
-                'attr' => [
-                    'class' => 'btn btn-success'
-                ]
-            ])
         ;
     }
 
