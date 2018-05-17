@@ -9,8 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -23,86 +21,87 @@ class FuncionarioType extends AbstractType
     {
         $builder
             ->add('nome', TextType::class,[
-                'label' => 'Nome',
+                'label' => 'Nome:',
                 'attr' => [
                     'placeholder' => 'Informe o nome do funcionário'
                 ]
             ])
             ->add('logadouro', TextType::class,[
-                'label' => 'Logadouro',
+                'label' => 'Logadouro:',
                 'attr' => [
                     'placeholder' => 'Informe o logadouro do funcionário'
                 ]
             ])
             ->add('numero', TextType::class,[
-                'label' => 'Número',
+                'label' => 'Número:',
                 'attr' => [
                     'placeholder' => 'Informe o número do logadouro do funcionário'
                 ]
             ])
             ->add('bairro', TextType::class,[
-                'label' => 'Bairro',
+                'label' => 'Bairro:',
                 'attr' => [
                     'placeholder' => 'Informe o bairro do funcionário'
                 ]
             ])
             ->add('cidade', TextType::class,[
-                'label' => 'Cidade',
+                'label' => 'Cidade:',
                 'attr' => [
                     'placeholder' => 'Informe a cidade do funcionário'
                 ]
             ])
             ->add('estado', TextType::class,[
-                'label' => 'Estado',
+                'label' => 'Estado:',
                 'attr' => [
                     'placeholder' => 'Informe o estado do funcionário'
                 ]
             ])
-            ->add('identidade', NumberType::class,[
-                'label' => 'Identidade',
+            ->add('identidade', TextType::class,[
+                'label' => 'Identidade:',
                 'attr' => [
-                    'placeholder' => 'Informe a identidade do funcionário'
+                    'placeholder' => 'Informe a identidade do funcionário (somente números)'
                 ]
             ])
 
             ->add('imagem_documento', FileType::class, [
-                'label' => 'Selecione a imagem da identidade'
+                'label' => 'Selecione a imagem da identidade:'
             ])
 
             ->add('cargo', ChoiceType::class, [
-                'label' => 'Cargo',
+                'label' => 'Cargo:',
                 'choices' => [
                     'Efetivo' => 'E',
                     'Comissionado' => 'C'
                 ]
             ])
             ->add('data_admissao', DateType::class, [
+                'label' => 'Data de Admissão:',
                 'widget' => 'single_text'
-
             ])
 
             ->add('salario_base', MoneyType::class, [
-                'label' => 'Salário Base  ',
+                'label' => 'Salário Base:',
                 'currency' => 'BRL',
                 'attr' => [
                     'placeholder' => 'Informe o salário base do funcionário'
                 ]
             ])
             ->add('gratificacao', MoneyType::class, [
-                'label' => 'Gratificação  ',
+                'label' => 'Gratificação:',
                 'currency' => 'BRL',
                 'attr' => [
                     'placeholder' => 'Informe a gratificacao do funcionário'
                 ]
             ])
             ->add('desconto', MoneyType::class, [
-                'label' => 'Desconto  ',
+                'label' => 'Desconto:',
                 'currency' => 'BRL',
                 'attr' => [
                     'placeholder' => 'Informe o desconto do funcionário'
                 ]
             ])
-            ->add('Secretaria', EntityType::class, [
+            ->add('secretaria', EntityType::class, [
+                'label' => 'Secretaria:',
                 'class' => 'App\Entity\Secretaria',
                 'choice_label' => 'nome',
                 'multiple' => false,

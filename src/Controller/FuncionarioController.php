@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\FileUploader;
 
+
 /**
  * @Route("/funcionario")
  */
@@ -24,7 +25,6 @@ class FuncionarioController extends Controller
     {
         return $this->render('funcionario/index.html.twig', ['funcionarios' => $funcionarioRepository->findAll()]);
     }
-
     /**
      * @Route("/new", name="funcionario_new", methods="GET|POST")
      */
@@ -33,28 +33,22 @@ class FuncionarioController extends Controller
         $funcionario = new Funcionario();
         $form = $this->createForm(FuncionarioType::class, $funcionario);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $funcionario->setStatus('A');
-
             $file = $funcionario->getImagemDocumento();
             $fileName = $fileUploader->upload($file);
-
             $funcionario->setImagemDocumento($fileName);
             $funcionario->calculaLiquido();
             $em->persist($funcionario);
             $em->flush();
-
             return $this->redirectToRoute('funcionario_index');
         }
-
         return $this->render('funcionario/new.html.twig', [
             'funcionario' => $funcionario,
             'form' => $form->createView(),
         ]);
     }
-
     /**
      * @Route("/{id}", name="funcionario_show", methods="GET")
      */
@@ -62,7 +56,6 @@ class FuncionarioController extends Controller
     {
         return $this->render('funcionario/show.html.twig', ['funcionario' => $funcionario]);
     }
-
     /**
      * @Route("/{id}/edit", name="funcionario_edit", methods="GET|POST")
      */
@@ -72,26 +65,19 @@ class FuncionarioController extends Controller
         /** @var File $file */
         $file = $funcionario->getImagemDocumento();
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-
             if (null == $funcionario->getImagemDocumento()) {
                 $funcionario->setImagemDocumento($file->getFilename());
             }
-
             $funcionario->calculaLiquido();
-
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('funcionario_edit', ['id' => $funcionario->getId()]);
         }
-
         return $this->render('funcionario/edit.html.twig', [
             'funcionario' => $funcionario,
             'form' => $form->createView(),
         ]);
     }
-
     /**
      * @Route("/{id}", name="funcionario_delete", methods="DELETE")
      */
@@ -102,7 +88,6 @@ class FuncionarioController extends Controller
             $em->remove($funcionario);
             $em->flush();
         }
-
         return $this->redirectToRoute('funcionario_index');
     }
     private function generateUniqueFileName()

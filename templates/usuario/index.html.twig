@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Usuario index{% endblock %}
+{% block title %}Usuários - {% endblock %}
 
 {% block body %}
-    <h1>Usuario index</h1>
+    <h1>Listagem de usuários</h1>
     <hr>
     <div class="row">
         <div class="col-md-12">
-            <a href="{{ path('usuario_new') }}" class="btn btn-primary pull-right">Cadastrar Usuário</a>
+            {% if is_granted("ROLE_ADMIN") %}
+                <a href="{{ path('usuario_new') }}" class="btn btn-primary pull-right">Cadastrar Usuário</a>
+            {% endif %}
         </div>
     </div>
 

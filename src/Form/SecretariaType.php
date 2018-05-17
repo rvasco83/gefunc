@@ -15,7 +15,7 @@ class SecretariaType extends AbstractType
     {
         $builder
             ->add('nome', TextType::class, [
-                'label' => 'Nome',
+                'label' => 'Nome:',
                 'attr' => [
                     'placeholder' => "Informe o nome da secretaria"
                 ],

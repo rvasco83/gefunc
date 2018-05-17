@@ -22,7 +22,6 @@ class UsuarioController extends Controller
     {
         return $this->render('usuario/index.html.twig', ['usuarios' => $usuarioRepository->findAll()]);
     }
-
     /**
      * @Route("/new", name="usuario_new", methods="GET|POST")
      */
@@ -31,7 +30,6 @@ class UsuarioController extends Controller
         $usuario = new Usuario();
         $form = $this->createForm(UsuarioType::class, $usuario);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $encoder = $this->get('security.password_encoder');
@@ -39,16 +37,13 @@ class UsuarioController extends Controller
             $usuario->setPassword($pass);
             $em->persist($usuario);
             $em->flush();
-
             return $this->redirectToRoute('usuario_index');
         }
-
         return $this->render('usuario/new.html.twig', [
             'usuario' => $usuario,
             'form' => $form->createView(),
         ]);
     }
-
     /**
      * @Route("/{id}", name="usuario_show", methods="GET")
      */
@@ -56,7 +51,6 @@ class UsuarioController extends Controller
     {
         return $this->render('usuario/show.html.twig', ['usuario' => $usuario]);
     }
-
     /**
      * @Route("/{id}/edit", name="usuario_edit", methods="GET|POST")
      */
@@ -64,22 +58,18 @@ class UsuarioController extends Controller
     {
         $form = $this->createForm(UsuarioType::class, $usuario);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $encoder = $this->get('security.password_encoder');
             $pass = $encoder->encodePassword($usuario, $usuario->getPassword());
             $usuario->setPassword($pass);
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('usuario_index', ['id' => $usuario->getId()]);
         }
-
         return $this->render('usuario/edit.html.twig', [
             'usuario' => $usuario,
             'form' => $form->createView(),
         ]);
     }
-
     /**
      * @Route("/{id}", name="usuario_delete", methods="DELETE")
      */
@@ -90,7 +80,6 @@ class UsuarioController extends Controller
             $em->remove($usuario);
             $em->flush();
         }
-
         return $this->redirectToRoute('usuario_index');
     }
 }

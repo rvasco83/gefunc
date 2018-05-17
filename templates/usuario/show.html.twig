@@ -1,19 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Usuario{% endblock %}
+{% block title %}Usuários - {% endblock %}
 
 {% block body %}
-    <h1>Usuario</h1>
+    <h1>{{ usuario.nome }}</h1>
 
     <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ usuario.id }}</td>
-            </tr>
-            <tr>
-                <th>Nome</th>
-                <td>{{ usuario.nome }}</td>
             </tr>
             <tr>
                 <th>Matricula</th>
@@ -41,8 +37,10 @@
     <div class="row">
         <div class="form-group col-4">
             <a href="{{ path('usuario_index') }}" class="btn btn-primary btn-sm">Voltar</a>
-            <a href="{{ path('usuario_edit', {'id': usuario.id}) }}" class="btn btn-primary btn-sm">Editar</a>
-            <a href="{{ include('usuario/_delete_form.html.twig') }}
+            {% if is_granted("ROLE_ADMIN") %}
+                <a href="{{ path('usuario_edit', {'id': usuario.id}) }}" class="btn btn-primary btn-sm">Editar</a>
+                {{ include('usuario/_delete_form.html.twig') }}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

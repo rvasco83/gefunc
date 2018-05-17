@@ -22,7 +22,6 @@ class SecretariaController extends Controller
     {
         return $this->render('secretaria/index.html.twig', ['secretarias' => $secretariaRepository->findAll()]);
     }
-
     /**
      * @Route("/new", name="secretaria_new", methods="GET|POST")
      */
@@ -31,21 +30,17 @@ class SecretariaController extends Controller
         $secretarium = new Secretaria();
         $form = $this->createForm(SecretariaType::class, $secretarium);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($secretarium);
             $em->flush();
-
             return $this->redirectToRoute('secretaria_index');
         }
-
         return $this->render('secretaria/new.html.twig', [
             'secretarium' => $secretarium,
             'form' => $form->createView(),
         ]);
     }
-
     /**
      * @Route("/{id}", name="secretaria_show", methods="GET")
      */
@@ -53,7 +48,6 @@ class SecretariaController extends Controller
     {
         return $this->render('secretaria/show.html.twig', ['secretarium' => $secretarium]);
     }
-
     /**
      * @Route("/{id}/edit", name="secretaria_edit", methods="GET|POST")
      */
@@ -61,19 +55,15 @@ class SecretariaController extends Controller
     {
         $form = $this->createForm(SecretariaType::class, $secretarium);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('secretaria_edit', ['id' => $secretarium->getId()]);
         }
-
         return $this->render('secretaria/edit.html.twig', [
             'secretarium' => $secretarium,
             'form' => $form->createView(),
         ]);
     }
-
     /**
      * @Route("/{id}", name="secretaria_delete", methods="DELETE")
      */
@@ -84,7 +74,6 @@ class SecretariaController extends Controller
             $em->remove($secretarium);
             $em->flush();
         }
-
         return $this->redirectToRoute('secretaria_index');
     }
 }

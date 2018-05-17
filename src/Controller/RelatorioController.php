@@ -27,7 +27,7 @@ class RelatorioController extends Controller
      */
     public function index()
     {
-        return $this->render('relatorio/index.html.twig', [
+        return $this->render('relatorio/_form.html.twig', [
             'controller_name' => 'RelatorioController',
         ]);
     }

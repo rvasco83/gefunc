@@ -37,6 +37,7 @@ security:
         - { path: ^/usuario, roles: ROLE_GERENTE }
         - { path: ^/relatorio, roles: ROLE_GERENTE }
         - { path: ^/secretaria, roles: ROLE_GERENTE }
+        - { path: ^/, roles: ROLE_OPERADOR }
 
 
     role_hierarchy:

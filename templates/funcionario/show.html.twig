@@ -1,19 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Visualizar Funcionário - {% endblock %}
+{% block title %}Funcionários - {% endblock %}
 
 {% block body %}
-    <h1>Funcionário</h1>
+    <h1>{{ funcionario.nome }}</h1>
 
     <table class="table">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ funcionario.id }}</td>
-            </tr>
-            <tr>
-                <th>Nome</th>
-                <td>{{ funcionario.nome }}</td>
             </tr>
             <tr>
                 <th>Logadouro</th>
@@ -41,7 +37,7 @@
             </tr>
             <tr>
                 <th>Imagem_documento</th>
-                <td><img width="100" src="/uploads/imagens/"{{ funcionario.imagemDocumento }}</td>
+                <td><img width="100" src="/uploads/imagens/{{ funcionario.imagemDocumento }}"</td>
             </tr>
             <tr>
                 <th>Cargo</th>
@@ -91,10 +87,10 @@
         <div class="form-group col-4">
 
             <a href="{{ path('funcionario_index') }}" class="btn btn-primary btn-sm">Voltar</a>
-
             <a href="{{ path('funcionario_edit', {'id': funcionario.id}) }}" class="btn btn-primary btn-sm">Editar</a>
-
-            <a href="{{ include('funcionario/_delete_form.html.twig') }}
+            {% if is_granted("ROLE_ADMIN") %}
+                {{ include('funcionario/_delete_form.html.twig') }}
+            {% endif %}
 
         </div>
     </div>

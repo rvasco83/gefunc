@@ -9,10 +9,10 @@
     {% endif %}
 
     <form class="form-signin" method="post" action="{{ path('login') }}">
-        <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+        <img class="mb-4" src="/imagens/brasao.png" alt="" height="122">
+        <h1 class="h3 mb-3 font-weight-normal">Gerencia de Funcionários</h1>
         <label for="inputEmail" class="sr-only">Login</label>
-        <input type="text" name="_username" id="username" value="{{ last_username }}" class="form-control" placeholder="Informe seu usuário ou e-mail" required autofocus>
+        <input type="text" name="_username" id="username" value="{{ last_username }}" class="form-control login-input" placeholder="Informe seu usuário ou e-mail" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="_password" id="password" class="form-control" placeholder="Infome sua senha" required>
         <div class="checkbox mb-3">

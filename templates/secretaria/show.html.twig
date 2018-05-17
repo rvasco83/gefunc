@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Visualizar}Secretaria - {% endblock %}
+{% block title %}Secretarias - {% endblock %}
 
 {% block body %}
-    <h1>Visualizar Secretaria</h1>
+    <h1>{{ secretarium.nome }}</h1>
 
     <table class="table">
         <tbody>
@@ -24,9 +24,9 @@
             <a href="{{ path('secretaria_index') }}" class="btn btn-primary btn-sm">Voltar</a>
 
             <a href="{{ path('secretaria_edit', {'id': secretarium.id}) }}" class="btn btn-primary btn-sm">Editar</a>
-
-            <a href="{{ include('secretaria/_delete_form.html.twig') }}
-
+            {% if is_granted("ROLE_ADMIN") %}
+                {{ include('secretaria/_delete_form.html.twig') }}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

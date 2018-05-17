@@ -6,6 +6,14 @@ $('#funcionario_cargo').on('change', function () {
 
 });
 
+$("#funcionario_identidade").mask('000.000.000-0');
+
+$("#funcionario_salario_base").mask('000.000.000.000.000,00', {reverse: true});
+
+$("#funcionario_gratificacao").mask('000.000.000.000.000,00', {reverse: true});
+
+$("#funcionario_desconto").mask('000.000.000.000.000,00', {reverse: true});
+
 function controlaExibicaoCamposFuncionario(cargo, status) {
     var funcionarioExonerado = false;
 
@@ -33,4 +41,8 @@ $('#funcionario_status').on('change', function () {
     controlaExibicaoCamposFuncionario(cargo, status);
 
 });
+
+
+
+
 

@@ -19,42 +19,42 @@ class UsuarioType extends AbstractType
     {
         $builder
             ->add('nome', TextType::class, [
-                'label' => "Nome",
+                'label' => "Nome:",
                 'attr' => [
                     'placeholder' => 'Informe o nome do usuário',
                     'class' => "form-control"
                 ]
             ])
             ->add('matricula', IntegerType::class, [
-                'label' => 'Matrícula' ,
+                'label' => 'Matrícula:' ,
                 'attr' => [
                     'placeholder' => 'Informe a matrícula do usuário',
                     'class' => 'form-control'
                 ]
             ])
             ->add('username', TextType::class, [
-                'label' => 'Username',
+                'label' => 'Usuário:',
                 'attr' => [
                     'placeholder' => 'Informe o username do usuário',
                     'class' => 'form-control'
                 ]
             ])
             ->add('password', PasswordType::class, [
-                'label' => 'Senha',
+                'label' => 'Senha:',
                 'attr' => [
                     'placeholder' => 'Informe a senha do usuário',
                     'class' => 'form-control'
                 ]
             ])
             ->add('email', EmailType::class, [
-                'label' => 'E-mail',
+                'label' => 'E-mail:',
                 'attr' => [
                     'placeholder' => 'Informe o e-mail do usuário',
                     'class' => 'form-control'
                 ]
             ])
             ->add('roles', ChoiceType::class, [
-                'label' => 'Permissão',
+                'label' => 'Permissão:',
                 'attr' => [
                     'placeholder' => 'Informe qual vai ser o direito de acesso do usuário',
                     'class' => 'form-control'
@@ -63,8 +63,8 @@ class UsuarioType extends AbstractType
                     'Administrador' => 'ROLE_ADMIN',
                     'Gerente' => 'ROLE_GERENTE',
                     'Operador' => 'ROLE_OPERADOR'
-
                 ],
+                'multiple' => true
             ])
         ;
     }
