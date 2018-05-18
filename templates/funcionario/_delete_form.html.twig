@@ -1,6 +1,6 @@
 <button type="submit" class="btn btn-sm btn-danger bt_excluir_produto" form="funcionario-delete">Delete</button>
 
-<form method="post" id="funcionario-delete" action="{{ path('funcionario_delete', {'id': funcionario.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+<form method="post" id="funcionario-delete" action="{{ path('funcionario_delete', {'id': funcionario.id}) }}" onsubmit="return confirm('Tem certeza de que deseja excluir este funcionário?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ funcionario.id) }}">
 </form>
