@@ -66,7 +66,9 @@ class Funcionario
     /**
      * @var string
      * @ORM\Column(type="string")
-     * @Assert\File(mimeTypes={"image/png", "image/jpg", "image/jpeg"})
+     * @Assert\Image(mimeTypes={"image/*"},
+     *      mimeTypesMessage="Arquivo inválido"
+     *      )
      */
     private $imagem_documento;
     /**

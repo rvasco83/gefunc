@@ -64,7 +64,8 @@ class FuncionarioType extends AbstractType
             ])
 
             ->add('imagem_documento', FileType::class, [
-                'label' => 'Selecione a imagem da identidade:'
+                'label' => 'Selecione a imagem da identidade:',
+                'data_class' => null
             ])
 
             ->add('cargo', ChoiceType::class, [
@@ -162,6 +163,7 @@ class FuncionarioType extends AbstractType
 
                 ->add('imagem_documento', FileType::class, [
                     'label' => 'Selecione a imagem da identidade',
+                    'data_class' => null,
                     'required' => false
                 ]);
 

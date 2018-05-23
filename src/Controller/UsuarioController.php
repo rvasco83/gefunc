@@ -37,6 +37,8 @@ class UsuarioController extends Controller
             $usuario->setPassword($pass);
             $em->persist($usuario);
             $em->flush();
+
+            $this->addFlash('success', "Usuário foi salvo com sucesso!");
             return $this->redirectToRoute('usuario_index');
         }
         return $this->render('usuario/new.html.twig', [
@@ -63,6 +65,8 @@ class UsuarioController extends Controller
             $pass = $encoder->encodePassword($usuario, $usuario->getPassword());
             $usuario->setPassword($pass);
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success', "Usuário foi editado com sucesso!");
             return $this->redirectToRoute('usuario_index', ['id' => $usuario->getId()]);
         }
         return $this->render('usuario/edit.html.twig', [
@@ -80,6 +84,8 @@ class UsuarioController extends Controller
             $em->remove($usuario);
             $em->flush();
         }
+
+        $this->addFlash('success', "Usuário foi removido com sucesso!");
         return $this->redirectToRoute('usuario_index');
     }
 }

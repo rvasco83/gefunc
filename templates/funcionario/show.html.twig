@@ -8,7 +8,7 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>Matrícula</th>
                 <td>{{ funcionario.id }}</td>
             </tr>
             <tr>
@@ -16,7 +16,7 @@
                 <td>{{ funcionario.logadouro }}</td>
             </tr>
             <tr>
-                <th>Numero</th>
+                <th>Número</th>
                 <td>{{ funcionario.numero }}</td>
             </tr>
             <tr>
@@ -36,8 +36,8 @@
                 <td>{{ funcionario.identidade }}</td>
             </tr>
             <tr>
-                <th>Imagem_documento</th>
-                <td><img width="100" src="/uploads/imagens/{{ funcionario.imagemDocumento }}"</td>
+                <th>Imagem da Identidade</th>
+                <td><img src="{{ caminho_imagem ~ funcionario.imagemDocumento }}" alt="" width="100"></td>
             </tr>
             <tr>
                 <th>Cargo</th>
@@ -57,19 +57,19 @@
                     {% endif %}</td>
             </tr>
             <tr>
-                <th>Data_admissao</th>
+                <th>Data da Admissão</th>
                 <td>{{ funcionario.dataAdmissao|date("d/m/Y") }}</td>
             </tr>
             <tr>
-                <th>Data_exoneracao</th>
+                <th>Data da Exoneração</th>
                 <td>{{ funcionario.dataExoneracao|date("d/m/Y") }}</td>
             </tr>
             <tr>
-                <th>Salario_base</th>
+                <th>Salário Base</th>
                 <td>{{ funcionario.salarioBase|number_format(2, ',', '.') }}</td>
             </tr>
             <tr>
-                <th>Gratificacao</th>
+                <th>Gratificação</th>
                 <td>{{ funcionario.gratificacao|number_format(2, ',', '.') }}</td>
             </tr>
             <tr>
@@ -77,7 +77,7 @@
                 <td>{{ funcionario.desconto|number_format(2, ',', '.') }}</td>
             </tr>
             <tr>
-                <th>Salario_liquido</th>
+                <th>Salário líquido</th>
                 <td>{{ funcionario.salarioLiquido|number_format(2, ',', '.') }}</td>
             </tr>
         </tbody>

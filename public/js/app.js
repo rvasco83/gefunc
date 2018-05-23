@@ -8,7 +8,7 @@ $('#funcionario_cargo').on('change', function () {
 
 $("#funcionario_identidade").mask('000.000.000-0');
 
-$("#funcionario_salario_base").mask('000.000.000.000.000,00', {reverse: true});
+//$("#funcionario_salario_base").mask('#.##0,00', {reverse: true});
 
 $("#funcionario_gratificacao").mask('000.000.000.000.000,00', {reverse: true});
 

@@ -34,6 +34,8 @@ class SecretariaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($secretarium);
             $em->flush();
+
+            $this->addFlash('success', "Secretaria foi salva com sucesso!");
             return $this->redirectToRoute('secretaria_index');
         }
         return $this->render('secretaria/new.html.twig', [
@@ -57,6 +59,8 @@ class SecretariaController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success', "Funcionário foi editado com sucesso!");
             return $this->redirectToRoute('secretaria_edit', ['id' => $secretarium->getId()]);
         }
         return $this->render('secretaria/edit.html.twig', [
@@ -74,6 +78,8 @@ class SecretariaController extends Controller
             $em->remove($secretarium);
             $em->flush();
         }
+
+        $this->addFlash('success', "Funcionário foi removido com sucesso!");
         return $this->redirectToRoute('secretaria_index');
     }
 }
