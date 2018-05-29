@@ -83,8 +83,7 @@ class FuncionarioController extends Controller
            }elseif(null == $funcionario->getImagemDocumento()) {
                $funcionario->setImagemDocumento($img_doc);
            };
-
-
+            
             $funcionario->calculaLiquido();
             $this->getDoctrine()->getManager()->flush();
 

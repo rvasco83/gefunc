@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Troca de Senha - {% endblock %}
+
+{% block body %}
+
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('warning') %}
+        <div class="alert alert-warning">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('danger') %}
+        <div class="alert alert-danger">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    <h1>Trocar Senha - {{ usuario.nome }}</h1>
+
+    {{ include('senha/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}
