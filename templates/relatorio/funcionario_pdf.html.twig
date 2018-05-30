@@ -1,16 +1,44 @@
+<style>
+    #titulo {
+        text-align: center;
 
-    <h1>Relatório Funcionario</h1>
+    }
+
+    #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #customers td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+    #customers tr:hover {background-color: #ddd;}
+
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #5a6268;
+        color: white;
+    }
+</style>
+    <h1 id="titulo">Relatório de Funcionarios</h1>
     <br>
-    <table class="table">
+    <table class="table" id="customers">
         <thead>
         <tr>
             <th>Mat.</th>
             <th>Nome</th>
             <th>Cargo</th>
             <th>Status</th>
-            <th>Data_admissao</th>
-            <th>Data_exoneracao</th>
-            <th>Salario_liquido</th>
+            <th>Data de admissão</th>
+            <th>Data de exoneração</th>
+            <th>Salário líquido</th>
         </tr>
         </thead>
         <tbody>
@@ -40,4 +68,3 @@
         {% endfor %}
         </tbody>
     </table>
-

@@ -121,13 +121,11 @@ class RelatorioController extends Controller
 
 
         $domPdf = new Dompdf();
-
         $domPdf->loadHtml($view);
-
         $domPdf->setPaper('A4','portrait');
         $domPdf->render();
 
-        return $domPdf->stream();
+        return $domPdf->stream("Relatório_Secretarias.pdf");
     }
 
     /**
@@ -171,7 +169,7 @@ class RelatorioController extends Controller
         $domPdf->setPaper('A4','portrait');
         $domPdf->render();
 
-        return $domPdf->stream();
+        return $domPdf->stream('Relatório_Funcionários');
     }
 
     /**
