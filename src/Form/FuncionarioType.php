@@ -117,6 +117,7 @@ class FuncionarioType extends AbstractType
             if (isset($funcionario['status'])) {
                 $disabled = false;
                 if($funcionario['status'] == 'A') {
+                    $funcionario['data_exoneracao'] = null;
                     $disabled = true;
                 }
 
@@ -131,22 +132,31 @@ class FuncionarioType extends AbstractType
         });
 
 
-        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
-            $funcionario = $event->getData();
-            $form = $event->getForm();
-
-            $disabled = false;
-            if($funcionario->getStatus() == 'A') {
-                $funcionario->setDataExoneracao(null);
-                $disabled = true;
+        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+            /** @var Funcionario $data */
+            $data = $event->getData();
+            if ($data->getStatus() == 'A') {
+                $data->setDataExoneracao(null);
             }
-
-            $form
-                ->add('data_exoneracao', DateType::class, [
-                    'disabled' => $disabled,
-                    'widget' => 'single_text'
-                ]);
         });
+
+
+//        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+//            $funcionario = $event->getData();
+//            $form = $event->getForm();
+//
+//            $disabled = false;
+//            if($funcionario->getStatus() == 'A') {
+//                $funcionario->setDataExoneracao(null);
+//                $disabled = true;
+//            }
+//
+//            $form
+//                ->add('data_exoneracao', DateType::class, [
+//                    'disabled' => $disabled,
+//                    'widget' => 'single_text'
+//                ]);
+//        });
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             $funcionario = $event->getData();
