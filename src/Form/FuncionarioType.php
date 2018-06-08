@@ -109,7 +109,6 @@ class FuncionarioType extends AbstractType
             ])
         ;
 
-
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $funcionario = $event->getData();
             $form = $event->getForm();
@@ -131,7 +130,6 @@ class FuncionarioType extends AbstractType
             }
         });
 
-
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
             /** @var Funcionario $data */
             $data = $event->getData();
@@ -139,7 +137,6 @@ class FuncionarioType extends AbstractType
                 $data->setDataExoneracao(null);
             }
         });
-
 
 //        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
 //            $funcionario = $event->getData();
@@ -176,7 +173,6 @@ class FuncionarioType extends AbstractType
                     'data_class' => null,
                     'required' => false
                 ]);
-
 
                 $estadoDataExoneracao = false;
 

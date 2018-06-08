@@ -230,6 +230,18 @@
     "symfony/orm-pack": {
         "version": "v1.0.5"
     },
+    "symfony/phpunit-bridge": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "179470cb6492db92dffee208cfdb436f175c93b4"
+        }
+    },
+    "symfony/polyfill-ctype": {
+        "version": "v1.8.0"
+    },
     "symfony/polyfill-intl-icu": {
         "version": "v1.7.0"
     },
@@ -256,9 +268,6 @@
             "version": "4.0",
             "ref": "cda8b550123383d25827705d05a42acf6819fe4e"
         }
-    },
-    "symfony/security": {
-        "version": "v4.0.6"
     },
     "symfony/security-bundle": {
         "version": "3.3",
@@ -325,6 +334,9 @@
     },
     "twig/twig": {
         "version": "v2.4.7"
+    },
+    "uran1980/fancybox-bundle": {
+        "version": "0.0.1"
     },
     "zendframework/zend-code": {
         "version": "3.3.0"

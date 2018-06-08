@@ -76,6 +76,7 @@ class FuncionarioController extends Controller
            $imagem = $form->get('imagem_documento')->getData();
 
            if(null != $imagem) {
+               $imagem = $funcionario->getImagemDocumento();
                $nome_imagem = $this->generateUniqueFileName() . "." . $imagem->guessExtension();
                $imagem->move($this->getParameter('caminho_imagem'), $nome_imagem);
                $funcionario->setImagemDocumento($nome_imagem);

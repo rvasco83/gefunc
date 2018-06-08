@@ -151,7 +151,7 @@ class RelatorioController extends Controller
         }
 
         header('Content-Type: application/vnd.openxmlformarts-officedocument.spreadsheetml.sheet ');
-        header('Content-Disposition: attachment; filename="test.xlsx"');
+        header('Content-Disposition: attachment; filename="Relatório_Secretarias.xlsx"');
         header('Cache-Control: max-age=0');
 
         $file = \PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
@@ -182,7 +182,7 @@ class RelatorioController extends Controller
         $total = $funcionarios;
 
         $excel->setActiveSheetIndex(0)
-            ->setCellValue('A1','Mat.')
+            ->setCellValue( 'A1', 'Mat.')
             ->setCellValue( 'B1', 'Nome')
             ->setCellValue( 'C1', 'Cargo')
             ->setCellValue( 'D1', 'Status')
@@ -203,7 +203,7 @@ class RelatorioController extends Controller
         }
 
         header('Content-Type: application/vnd.openxmlformarts-officedocument.spreadsheetml.sheet ');
-        header('Content-Disposition: attachment; filename="test.xlsx"');
+        header('Content-Disposition: attachment; filename="Relatório_Funcionários.xlsx"');
         header('Cache-Control: max-age=0');
 
         $file = \PHPExcel_IOFactory::createWriter($excel, 'Excel2007');

@@ -123,6 +123,7 @@ class Funcionario
      * @Assert\Range(min="0", max="10000000")
      */
     private $salario_liquido;
+
     public function calculaLiquido(){
         $liquido = ($this->getSalarioBase() + $this->getGratificacao()) - $this->getDesconto();
         $this->setSalarioLiquido($liquido);

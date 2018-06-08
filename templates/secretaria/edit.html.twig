@@ -3,7 +3,7 @@
 {% block title %}Secretarias - {% endblock %}
 
 {% block body %}
-    <h1>Editar Secretaria</h1>
+    <h1>Editar {{ secretarium.nome }}</h1>
 
     {{ include('secretaria/_form.html.twig', {'button_label': 'Update'}) }}
 
