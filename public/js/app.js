@@ -44,7 +44,9 @@ $('#funcionario_status').on('change', function () {
 
 $("#fancybox-image").fancybox();
 
-
+$('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+})
 
 
 

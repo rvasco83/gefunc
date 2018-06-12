@@ -60,7 +60,7 @@ class SecretariaController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', "Funcionário foi editado com sucesso!");
+            $this->addFlash('success', "Secretaria foi editada com sucesso!");
             return $this->redirectToRoute('secretaria_edit', ['id' => $secretarium->getId()]);
         }
         return $this->render('secretaria/edit.html.twig', [
@@ -79,7 +79,7 @@ class SecretariaController extends Controller
             $em->flush();
         }
 
-        $this->addFlash('success', "Funcionário foi removido com sucesso!");
+        $this->addFlash('success', "Secretaria foi removida com sucesso!");
         return $this->redirectToRoute('secretaria_index');
     }
 }
