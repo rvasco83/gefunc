@@ -51,7 +51,6 @@ class RelatorioController extends Controller
     * @param Request $request
     *
     * @Route("/relatorio/funcionario", name="relatorio_funcionario")
-    * @Template("relatorio/funcionario.html.twig")
     * @return Response
     */
    public function relatorioFuncionario(Request $request, FuncionarioRepository $funcionarioRepository)
@@ -98,7 +97,14 @@ class RelatorioController extends Controller
            $excelClicked = $form->get('excel')->isClicked();
 
            if ($excelClicked) {
-               return $this->funcionarioExcel($funcionarios);
+               $excel = $this->funcionarioExcel($funcionarios);
+
+               return new Response(
+                   $excel, 200, array (
+                   'Content-Type' => 'application/vnd.ms-excel',
+                   'Content-Disposition' => 'attachment; filename="Relatório_Funcionários.xlsx"',
+               )
+               );
            }
        }
 
@@ -202,11 +208,13 @@ class RelatorioController extends Controller
             $excel->setActiveSheetIndex(0)->setCellValue('G'.$contador, $linha->getSalarioLiquido());
         }
 
-        header('Content-Type: application/vnd.openxmlformarts-officedocument.spreadsheetml.sheet ');
+        /*header('Content-Type: application/vnd.openxmlformarts-officedocument.spreadsheetml.sheet ');
         header('Content-Disposition: attachment; filename="Relatório_Funcionários.xlsx"');
-        header('Cache-Control: max-age=0');
+        header('Cache-Control: max-age=0');*/
 
         $file = \PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+        ob_start();
         $file->save('php://output');
+        return ob_get_clean();
     }
 }

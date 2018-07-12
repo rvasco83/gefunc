@@ -5,10 +5,10 @@
 {% block body %}
     <main class="container mt-5">
         {% form_theme form with 'bootstrap_4_layout.html.twig' %}
-        {{ form_start(form, {"attr": {"novalidate": "novalidate"}}) }}
+        {{ form_start(form, {"attr": {"novalidate": "novalidate", "id": "form"}}) }}
         {{ form_widget(form) }}
         <br>
-        <input class="btn btn-success btn-sm" type="submit" value="Salvar">
+        <input class="btn btn-success btn-sm" type="submit" value="Salvar" id='btnsubmit'>
         <a href="{{ path('secretaria_index') }}" class="btn btn-primary btn-sm">Voltar</a>
         {{ form_end(form) }}
     </main>

@@ -16,7 +16,7 @@
                 <form method="post" id="funcionario-delete" action="{{ path('funcionario_delete', {'id': funcionario.id}) }}">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ funcionario.id) }}">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Voltar</button>
                     <button type="submit" class="btn btn-danger" name="_token" value="{{ csrf_token('delete' ~ funcionario.id) }}">Excluir</button>
                 </form>
             </div>

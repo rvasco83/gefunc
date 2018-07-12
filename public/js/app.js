@@ -48,5 +48,21 @@ $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
 })
 
+function desabilitaBotao(){
+    document.getElementById("BtnCurtir").disabled = true;
+}
+
+$("#BtnCurtir2").on("click", function(){
+    $(this).prop("disabled", true);
+});
+
+$('#btnsubmit').on('click',function()
+{
+    $(this).val('Enviando...')
+        .attr('disabled','disabled');
+    $('#form').submit();
+});
+
+
 
 
